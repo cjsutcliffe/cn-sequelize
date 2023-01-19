@@ -2,12 +2,13 @@ const yargs = require("yargs");
 const {sequelize} = require("./db/connection");
 const { createMovie, listMovies, updateActor, updateDirector, deleteMovie } = require("./movie/function");
 const Movie = require("./movie/movietable");
-const Actor = require("./movie/actortable")
+const Actor = require("./movie/actortable");
+const ActorMovie = require("./actormovie.table");
 
 async function app(yargsInput) {
     await sequelize.sync({alter:true});
     if (yargsInput.create) {
-        //Place code to create a movie here - DONE!
+        //Place code to create a movie here
         await createMovie({
             title: yargsInput.title,
             actor: yargsInput.actor,
@@ -26,7 +27,7 @@ async function app(yargsInput) {
         //Place code to delete a movie from our table here
         await deleteMovie(yargsInput);
     } else {
-        console.log("Unrecognised Yargs command");
+        consoe.log("Unrecognised Yargs command");
     }
     await sequelize.close();
 }

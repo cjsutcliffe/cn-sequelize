@@ -1,10 +1,24 @@
 const {DataTypes} = require("sequelize");
 const {sequelize} = require("../db/connection");
 const Movie = require("./movie/movietable");
-const Actor = require("./actor/movietable");
+const Actor = require("./actor/actortable");
 
-const ActorMovie = sequelize.define("ActorMovie")
-//what does this table need to contain if anything?
+const ActorMovie = sequelize.define('ActorMovie', {
+    MovieId: {
+        type: DataTypes.INTEGER,
+        references: {
+        model: Movie, 
+        key: 'id'
+        }
+    },
+    ActorId: {
+        type: DataTypes.INTEGER,
+        references: {
+        model: Actor, 
+        key: 'id'
+        }
+    }
+});
 
-Actor.belongsToMany (title, {through: 'Movie'});
-Title.hasMany (actor, {through: 'Actor'});
+Movie.belongsToMany(Actor, { through: ActorMovie });
+Actor.belongsToMany(Movie, { through: ActorMovie });
