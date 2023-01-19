@@ -2,12 +2,11 @@ const yargs = require("yargs");
 const {sequelize} = require("./db/connection");
 const { createMovie, listMovies, updateActor, updateDirector, deleteMovie } = require("./movie/function");
 const Movie = require("./movie/movie");
-const Actor = require("./movie/actortable")
 
 async function app(yargsInput) {
     await sequelize.sync({alter:true});
     if (yargsInput.create) {
-        //Place code to create a movie here - DONE!
+        //Place code to create a movie here
         await createMovie({
             title: yargsInput.title,
             actor: yargsInput.actor,
