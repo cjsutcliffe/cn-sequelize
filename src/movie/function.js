@@ -1,4 +1,4 @@
-const Movie = require("./table");
+const Movie = require("./movietable");
 
 exports.createMovie = async (movieObj) => {
     try {
@@ -7,4 +7,4 @@ exports.createMovie = async (movieObj) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
